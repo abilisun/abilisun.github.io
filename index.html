@@ -40,6 +40,7 @@
       background: var(--bg);
       border-right: 1px solid #141414;
       z-index: 10;
+      overflow-y: auto;
     }
 
     .brand-header {
@@ -57,22 +58,62 @@
     }
     .divider-pipe { color: #444; }
 
-    /* Navigasi Utama */
+    /* Navigasi Utama & Accordion */
     nav ul { list-style: none; }
-    nav li { margin-bottom: 14px; }
-    nav a {
+    nav > ul > li { margin-bottom: 14px; }
+
+    .nav-link, .nav-toggle {
+      width: 100%;
+      background: none;
+      border: none;
       text-decoration: none;
       color: var(--text-muted);
+      font-family: inherit;
       font-size: 0.88rem;
       font-weight: 500;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      transition: color 0.2s;
+      cursor: pointer;
+      padding: 2px 0;
+      text-align: left;
+      transition: color 0.2s ease;
     }
-    nav a:hover, nav a.active { color: var(--text-main); }
 
-    /* Sub-menu dengan garis vertikal */
+    .nav-link:hover,
+    .nav-toggle:hover,
+    .nav-link.active,
+    .nav-item.open > .nav-toggle {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* Ikon Chevron ">" yang berputar ke "v" */
+    .chevron {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+    }
+    .nav-item.open > .nav-toggle .chevron {
+      transform: rotate(90deg);
+    }
+
+    /* Sub-menu Collapse/Expand dengan garis vertikal */
+    .submenu-wrapper {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-item.open .submenu-wrapper {
+      grid-template-rows: 1fr;
+    }
+    .submenu-inner {
+      overflow: hidden;
+    }
     .submenu {
       margin-top: 10px;
       margin-left: 4px;
@@ -80,14 +121,25 @@
       border-left: 1px solid var(--border);
     }
     .submenu li { margin-bottom: 9px; }
-    .submenu a { font-size: 0.82rem; }
+    .submenu li:last-child { margin-bottom: 2px; }
+    .submenu a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      display: block;
+      transition: color 0.2s;
+    }
+    .submenu a:hover, .submenu a.active {
+      color: var(--text-main);
+      font-weight: 600;
+    }
 
     /* Profil Pojok Kiri Bawah */
     .profile-box {
       display: flex;
       align-items: center;
       gap: 12px;
-      padding-top: 16px;
+      padding-top: 24px;
     }
     .avatar {
       width: 34px;
@@ -348,25 +400,44 @@
 
       <nav>
         <ul>
-          <li><a href="#introduction" class="active">Introduction</a></li>
-          <li>
-            <a href="#skills">Skills & Stack <span>⌄</span></a>
-            <ul class="submenu">
-              <li><a href="#skills">Tools & Querying</a></li>
-              <li><a href="#skills">Analytical Core</a></li>
-              <li><a href="#skills">Domain & Ops</a></li>
-            </ul>
+          <li><a href="#introduction" class="nav-link active">Introduction</a></li>
+
+          <!-- Menu Accordion 1: Skills -->
+          <li class="nav-item">
+            <button type="button" class="nav-toggle" aria-expanded="false">
+              <span>Skills & Stack</span>
+              <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <div class="submenu-wrapper">
+              <div class="submenu-inner">
+                <ul class="submenu">
+                  <li><a href="#skill-tools">Tools & Querying</a></li>
+                  <li><a href="#skill-core">Analytical Core</a></li>
+                  <li><a href="#skill-domain">Domain & Ops</a></li>
+                </ul>
+              </div>
+            </div>
           </li>
-          <li>
-            <a href="#projects">Projects <span>⌄</span></a>
-            <ul class="submenu">
-              <li><a href="#proj-01">01. P2P Risk & TWP90</a></li>
-              <li><a href="#proj-02">02. HR Attrition Study</a></li>
-              <li><a href="#proj-03">03. Affiliate & A/B Test</a></li>
-            </ul>
+
+          <!-- Menu Accordion 2: Projects (Default terbuka seperti contoh "Basics") -->
+          <li class="nav-item open">
+            <button type="button" class="nav-toggle" aria-expanded="true">
+              <span>Projects</span>
+              <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+            <div class="submenu-wrapper">
+              <div class="submenu-inner">
+                <ul class="submenu">
+                  <li><a href="#proj-01" class="active">01. P2P Risk & TWP90</a></li>
+                  <li><a href="#proj-02">02. HR Attrition Study</a></li>
+                  <li><a href="#proj-03">03. Affiliate & A/B Test</a></li>
+                </ul>
+              </div>
+            </div>
           </li>
-          <li><a href="#experience">Experience <span>›</span></a></li>
-          <li><a href="#contact">Contact <span>›</span></a></li>
+
+          <li><a href="#experience" class="nav-link">Experience</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
         </ul>
       </nav>
     </div>
@@ -400,7 +471,7 @@
     <section id="skills">
       <span class="section-kicker">01 — Capabilities</span>
       <div class="skills-grid">
-        <div class="skill-card">
+        <div class="skill-card" id="skill-tools">
           <h3>Tools & Tech Stack</h3>
           <div class="tag-list">
             <span class="tag">SQL (PostgreSQL)</span>
@@ -413,7 +484,7 @@
           </div>
         </div>
 
-        <div class="skill-card">
+        <div class="skill-card" id="skill-core">
           <h3>Analytical Skillset</h3>
           <div class="tag-list">
             <span class="tag">Exploratory Data Analysis</span>
@@ -425,7 +496,7 @@
           </div>
         </div>
 
-        <div class="skill-card">
+        <div class="skill-card" id="skill-domain">
           <h3>Domain & Cross-Functional</h3>
           <div class="tag-list">
             <span class="tag">Data Storytelling</span>
@@ -445,7 +516,6 @@
       <!-- PROJECT 01 (Featured Full Width) -->
       <div class="project-featured" id="proj-01">
         <div class="visual-box">
-          <!-- Ganti div di bawah ini dengan <img src="twp90-dashboard.png" alt="P2P Dashboard"> -->
           <div class="placeholder-art">[ Tableau Dashboard Preview — P2P Risk Analysis ]</div>
         </div>
         <div class="project-meta">
@@ -544,6 +614,28 @@
     <a href="mailto:emailkamu@gmail.com" class="btn-pill btn-white">Get in Touch</a>
     <a href="https://linkedin.com/in/usernamekamu" target="_blank" class="btn-pill btn-dark">LinkedIn</a>
   </div>
+
+  <!-- SCRIPT INTERAKTIF UNTUK ACCORDION MENU -->
+  <script>
+    document.querySelectorAll('.nav-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const navItem = button.parentElement;
+        const isOpen = navItem.classList.contains('open');
+
+        // Toggle buka/tutup menu yang diklik
+        navItem.classList.toggle('open');
+        button.setAttribute('aria-expanded', !isOpen);
+      });
+    });
+
+    // Sorot item sub-menu yang sedang aktif saat diklik
+    document.querySelectorAll('.submenu a, .nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        document.querySelectorAll('.submenu a, .nav-link').forEach(el => el.classList.remove('active'));
+        link.classList.add('active');
+      });
+    });
+  </script>
 
 </body>
 </html>
