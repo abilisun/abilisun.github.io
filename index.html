@@ -218,6 +218,8 @@
       font-size: 1.02rem;
       line-height: 1.75;
       margin-bottom: 36px;
+      text-align: justify;
+      text-justify: inter-word;
     }
     .quick-stats {
       display: grid;
@@ -228,7 +230,7 @@
       padding-top: 28px;
     }
     .stat-item .stat-num {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 600;
       color: var(--text-main);
       margin-bottom: 4px;
@@ -425,7 +427,7 @@
       font-weight: 500;
     }
 
-    /* === FOOTER: LANGUAGE SWITCHER (BUSINESS.X.COM STYLE) + COPYRIGHT + WATERMARK === */
+    /* === FOOTER === */
     .watermark-footer {
       margin-top: 84px;
       padding-bottom: 64px;
@@ -632,9 +634,9 @@
             <div class="submenu-wrapper">
               <div class="submenu-inner">
                 <ul class="submenu">
-                  <li><a href="#proj-01" data-page="page-projects" data-target="proj-01" data-i18n="subProj1">01. P2P Credit Risk</a></li>
-                  <li><a href="#proj-02" data-page="page-projects" data-target="proj-02" data-i18n="subProj2">02. HR Attrition Study</a></li>
-                  <li><a href="#proj-03" data-page="page-projects" data-target="proj-03" data-i18n="subProj3">03. TikTok Affiliate</a></li>
+                  <li><a href="#proj-01" data-page="page-projects" data-target="proj-01" data-i18n="subProj1">P2P Credit Risk</a></li>
+                  <li><a href="#proj-02" data-page="page-projects" data-target="proj-02" data-i18n="subProj2">HR Attrition Study</a></li>
+                  <li><a href="#proj-03" data-page="page-projects" data-target="proj-03" data-i18n="subProj3">TikTok Affiliate</a></li>
                 </ul>
               </div>
             </div>
@@ -679,16 +681,16 @@
 
         <div class="quick-stats">
           <div class="stat-item">
-            <div class="stat-num">Rp99.01B</div>
-            <div class="stat-label" data-i18n="stat1Label">Credit Exposure Analyzed (10K+ Borrowers)</div>
+            <div class="stat-num" data-i18n="stat1Num">Data Pipelines</div>
+            <div class="stat-label" data-i18n="stat1Label">Architecture & ETL Execution</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num">6,300+</div>
-            <div class="stat-label" data-i18n="stat2Label">E-Commerce Orders Modeled via Star Schema</div>
+            <div class="stat-num" data-i18n="stat2Num">Executive BI</div>
+            <div class="stat-label" data-i18n="stat2Label">Dynamic Dashboarding & KPIs</div>
           </div>
           <div class="stat-item">
-            <div class="stat-num">2,000+</div>
-            <div class="stat-label" data-i18n="stat3Label">Single-Session Checkouts Driven</div>
+            <div class="stat-num" data-i18n="stat3Num">Strategic Growth</div>
+            <div class="stat-label" data-i18n="stat3Label">Conversion & Performance Optimization</div>
           </div>
         </div>
       </section>
@@ -753,10 +755,10 @@
             <div class="placeholder-art" data-i18n="proj1Art">[ Tableau Dashboard — P2P Risk Analysis ]</div>
           </div>
           <div class="project-meta">
-            <div class="project-num" data-i18n="proj1Num">01 / CREDIT RISK & FINTECH</div>
+            <div class="project-num" data-i18n="proj1Num">CREDIT RISK & FINTECH</div>
             <div class="project-desc">
               <h3 data-i18n="proj1Title">P2P Lending Default & TWP90 Risk Analysis</h3>
-              <div class="metrics-pill" data-i18n="proj1Pill">10,000+ Borrowers • Rp99.01B Exposure • Projected 0.60% Default Rate</div>
+              <div class="metrics-pill" data-i18n="proj1Pill">10,000+ Borrowers • Rp99.01B Exposure • Projected 0.06% Default Rate</div>
               <p data-i18n="proj1Desc">Developed an end-to-end credit risk evaluation pipeline analyzing systemic default drivers and financial vulnerability metrics (DSR & Limit Utilization). Engineered an automated 3-Tier Early Warning System (EWS) framework and SQL segmentation models alongside an interactive Tableau executive dashboard.</p>
               <div class="stack-inline">Python • PostgreSQL • Tableau • EWS Framework</div>
               <div>
@@ -773,7 +775,7 @@
             <div class="placeholder-art" data-i18n="proj2Art">[ Tableau Dashboard — HR Attrition ]</div>
           </div>
           <div class="project-meta">
-            <div class="project-num" data-i18n="proj2Num">02 / WORKFORCE & HR ANALYTICS</div>
+            <div class="project-num" data-i18n="proj2Num">WORKFORCE & HR ANALYTICS</div>
             <div class="project-desc">
               <h3 data-i18n="proj2Title">HR Employee Attrition Deep Dive</h3>
               <div class="metrics-pill" data-i18n="proj2Pill">Workforce Efficiency • Retention Drivers • Executive BI</div>
@@ -793,7 +795,7 @@
             <div class="placeholder-art" data-i18n="proj3Art">[ Star Schema & KPI Dashboard — TikTok Affiliate ]</div>
           </div>
           <div class="project-meta">
-            <div class="project-num" data-i18n="proj3Num">03 / E-COMMERCE & GROWTH</div>
+            <div class="project-num" data-i18n="proj3Num">E-COMMERCE & GROWTH</div>
             <div class="project-desc">
               <h3 data-i18n="proj3Title">TikTok Affiliate Analytics</h3>
               <div class="metrics-pill" data-i18n="proj3Pill">6,300+ E-Commerce Orders • Star Schema • A/B Experimentation</div>
@@ -902,9 +904,8 @@
       </section>
     </div>
 
-    <!-- FOOTER: LANGUAGE SELECTOR + COPYRIGHT + WATERMARK OUTLINE -->
+    <!-- FOOTER -->
     <footer class="watermark-footer" id="watermark-area">
-      <!-- Bagian Pill Language Selector & © 2026 by abil -->
       <div class="footer-meta-bar">
         <div class="lang-dropdown" id="lang-dropdown">
           <button type="button" class="lang-pill-btn" id="lang-toggle-btn" aria-haspopup="listbox" aria-expanded="false">
@@ -919,7 +920,6 @@
         <div class="copyright-text">© 2026 by abil</div>
       </div>
 
-      <!-- Watermark Outline ABILISUN dengan Efek Senter -->
       <div class="watermark-svg-wrap">
         <svg class="watermark-svg" viewBox="0 0 920 155" preserveAspectRatio="xMidYMid meet">
           <defs>
@@ -943,7 +943,7 @@
     <a href="https://www.linkedin.com/in/nabil-ihsan-3914b1248/" target="_blank" class="btn-pill btn-dark">LinkedIn</a>
   </div>
 
-  <!-- SCRIPT MULTI-PAGE, ACCORDION, BILINGUAL (EN/FR) & FLASHLIGHT -->
+  <!-- SCRIPT -->
   <script>
     const translations = {
       en: {
@@ -954,18 +954,21 @@
         subAnalytics: "Analytics & Modeling",
         subDomain: "Visualization & Ops",
         navProjects: "Projects",
-        subProj1: "01. P2P Credit Risk",
-        subProj2: "02. HR Attrition Study",
-        subProj3: "03. TikTok Affiliate",
+        subProj1: "P2P Credit Risk",
+        subProj2: "HR Attrition Study",
+        subProj3: "TikTok Affiliate",
         navExp: "Experience",
         navContact: "Contact",
 
         introKicker: "00 — Introduction",
         heroTitle: "Turning messy data into<span>decision-ready business solutions.</span>",
         heroBio: "Data Analyst based in Bandung leveraging deep expertise in SQL, Python, Tableau, and Microsoft Excel. Proven track record of executing end-to-end data pipelines, developing dynamic KPI dashboards, and deploying applied predictive models. Adept at extracting large scale datasets, conducting rigorous exploratory data analysis, and translating commercial marketing and live commerce metrics into scalable growth strategies.",
-        stat1Label: "Credit Exposure Analyzed (10K+ Borrowers)",
-        stat2Label: "E-Commerce Orders Modeled via Star Schema",
-        stat3Label: "Single-Session Checkouts Driven",
+        stat1Num: "Data Pipelines",
+        stat1Label: "Architecture & ETL Execution",
+        stat2Num: "Executive BI",
+        stat2Label: "Dynamic Dashboarding & KPIs",
+        stat3Num: "Strategic Growth",
+        stat3Label: "Conversion & Performance Optimization",
 
         skillsKicker: "01 — Capabilities",
         skillsHeading: "Technical & Analytical Stack<span>Tools, modeling frameworks, and operational domain.</span>",
@@ -988,17 +991,17 @@
         projKicker: "02 — Selected Case Studies",
         projHeading: "Data Analytics Projects<span>End-to-end pipelines, risk scoring, and executive BI.</span>",
         proj1Art: "[ Tableau Dashboard — P2P Risk Analysis ]",
-        proj1Num: "01 / CREDIT RISK & FINTECH",
+        proj1Num: "CREDIT RISK & FINTECH",
         proj1Title: "P2P Lending Default & TWP90 Risk Analysis",
         proj1Pill: "10,000+ Borrowers • Rp99.01B Exposure • Projected 0.06% Default Rate",
         proj1Desc: "Developed an end-to-end credit risk evaluation pipeline analyzing systemic default drivers and financial vulnerability metrics (DSR & Limit Utilization). Engineered an automated 3-Tier Early Warning System (EWS) framework and SQL segmentation models alongside an interactive Tableau executive dashboard.",
         proj2Art: "[ Tableau Dashboard — HR Attrition ]",
-        proj2Num: "02 / WORKFORCE & HR ANALYTICS",
+        proj2Num: "WORKFORCE & HR ANALYTICS",
         proj2Title: "HR Employee Attrition Deep Dive",
         proj2Pill: "Workforce Efficiency • Retention Drivers • Executive BI",
         proj2Desc: "Identified key churn drivers across departments, overtime workload, and compensation tiers to formulate data-backed retention initiatives. Delivered an automated relational analytics workflow and dynamic Tableau dashboard tracking workforce efficiency metrics.",
         proj3Art: "[ Star Schema & KPI Dashboard — TikTok Affiliate ]",
-        proj3Num: "03 / E-COMMERCE & GROWTH",
+        proj3Num: "E-COMMERCE & GROWTH",
         proj3Title: "TikTok Affiliate Analytics",
         proj3Pill: "6,300+ E-Commerce Orders • Star Schema • A/B Experimentation",
         proj3Desc: "Built an end-to-end analytics pipeline evaluating user engagement, forecasting trends, and conversion performance. Processed multi-source logs using Star Schema modeling, feature engineering, and advanced SQL (CTEs & Window Functions) to drive automated KPI dashboards and A/B test validation.",
@@ -1037,18 +1040,21 @@
         subAnalytics: "Analyse & Modélisation",
         subDomain: "Visualisation & Opérations",
         navProjects: "Projets",
-        subProj1: "01. Risque de Crédit P2P",
-        subProj2: "02. Étude d'Attrition RH",
-        subProj3: "03. Affiliation TikTok",
+        subProj1: "Risque de Crédit P2P",
+        subProj2: "Étude d'Attrition RH",
+        subProj3: "Affiliation TikTok",
         navExp: "Parcours",
         navContact: "Contact",
 
         introKicker: "00 — Présentation",
         heroTitle: "Transformer des données brutes en<span>solutions décisionnelles stratégiques.</span>",
         heroBio: "Analyste de données basé à Bandung doté d'une solide expertise en SQL, Python, Tableau et Microsoft Excel. Expérience avérée dans le déploiement de pipelines de données de bout en bout, la conception de tableaux de bord KPI dynamiques et l'implémentation de modèles prédictifs appliqués. Spécialisé dans l'extraction de vastes ensembles de données, l'analyse exploratoire rigoureuse et la conversion des indicateurs marketing et live-commerce en leviers de croissance durable.",
-        stat1Label: "Exposition Crédit Analysée (10 000+ Emprunteurs)",
-        stat2Label: "Commandes E-Commerce Modélisées (Schéma en Étoile)",
-        stat3Label: "Commandes Validées en Une Seule Session Live",
+        stat1Num: "Pipelines de Données",
+        stat1Label: "Architecture & Exécution ETL",
+        stat2Num: "BI Exécutive",
+        stat2Label: "Tableaux de Bord & KPIs Dynamiques",
+        stat3Num: "Croissance Stratégique",
+        stat3Label: "Optimisation de la Conversion",
 
         skillsKicker: "01 — Savoir-Faire",
         skillsHeading: "Stack Technique & Analytique<span>Outils, architectures de modélisation et expertise métier.</span>",
@@ -1071,17 +1077,17 @@
         projKicker: "02 — Études de Cas Sélectionnées",
         projHeading: "Projets d'Analyse de Données<span>Pipelines complets, scoring de risque et BI décisionnelle.</span>",
         proj1Art: "[ Tableau de Bord — Analyse du Risque P2P ]",
-        proj1Num: "01 / RISQUE DE CRÉDIT & FINTECH",
+        proj1Num: "RISQUE DE CRÉDIT & FINTECH",
         proj1Title: "Analyse du Défaut de Paiement & Risque TWP90 (Prêts P2P)",
         proj1Pill: "10 000+ Emprunteurs • 99,01 Md IDR d'Exposition • Taux de Défaut Projeté à 0,06 %",
         proj1Desc: "Développement d'un pipeline complet d'évaluation du risque de crédit analysant les facteurs systémiques de défaut et les indicateurs de vulnérabilité financière (taux d'endettement et utilisation des plafonds). Conception d'un système d'alerte précoce (EWS) automatisé à 3 niveaux, de modèles de segmentation SQL et d'un tableau de bord exécutif interactif sous Tableau.",
         proj2Art: "[ Tableau de Bord — Attrition RH ]",
-        proj2Num: "02 / ANALYTIQUE RH & CAPITAL HUMAIN",
+        proj2Num: "ANALYTIQUE RH & CAPITAL HUMAIN",
         proj2Title: "Analyse Approfondie de l'Attrition des Collaborateurs",
         proj2Pill: "Efficacité Opérationnelle • Leviers de Rétention • BI Exécutive",
         proj2Desc: "Identification des principaux facteurs de départ par département, charge d'heures supplémentaires et grille salariale afin de formuler des plans de rétention fondés sur les données. Déploiement d'un flux analytique relationnel automatisé et d'un tableau de bord dynamique Tableau pour le suivi de la performance RH.",
         proj3Art: "[ Schéma en Étoile & KPI — Affiliation TikTok ]",
-        proj3Num: "03 / E-COMMERCE & CROISSANCE",
+        proj3Num: "E-COMMERCE & CROISSANCE",
         proj3Title: "Analytique d'Affiliation TikTok",
         proj3Pill: "6 300+ Commandes E-Commerce • Schéma en Étoile • Expérimentation A/B",
         proj3Desc: "Conception d'un pipeline analytique de bout en bout évaluant l'engagement utilisateur, les tendances prévisionnelles et les taux de conversion. Traitement de journaux multi-sources via une modélisation en schéma en étoile, l'ingénierie des caractéristiques et du SQL avancé (CTE et fonctions de fenêtrage) pour alimenter les tableaux de bord KPI et valider les tests A/B.",
@@ -1114,7 +1120,6 @@
       }
     };
 
-    // === LOGIKA BILINGUAL SWITCHER ===
     const langDropdown = document.getElementById('lang-dropdown');
     const langToggleBtn = document.getElementById('lang-toggle-btn');
     const currentLangLabel = document.getElementById('current-lang-label');
@@ -1161,7 +1166,6 @@
       }
     });
 
-    // === MULTI-PAGE NAVIGATION & ACCORDION ===
     const pages = document.querySelectorAll('.page-section');
     const navLinks = document.querySelectorAll('.nav-link');
     const navItems = document.querySelectorAll('.nav-item');
@@ -1221,7 +1225,6 @@
       });
     });
 
-    // === EFEK SENTER WATERMARK ===
     const watermarkArea = document.getElementById('watermark-area');
     const watermarkSvg = watermarkArea.querySelector('.watermark-svg');
     const flashlightGrad = document.getElementById('flashlight-grad');
