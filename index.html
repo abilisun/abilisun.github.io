@@ -93,7 +93,6 @@
       font-weight: 600;
     }
 
-    /* Ikon Chevron ">" yang berputar ke "v" */
     .chevron {
       width: 14px;
       height: 14px;
@@ -107,7 +106,6 @@
       transform: rotate(90deg);
     }
 
-    /* Sub-menu Collapse/Expand dengan garis vertikal */
     .submenu-wrapper {
       display: grid;
       grid-template-rows: 0fr;
@@ -156,7 +154,7 @@
     .profile-info .name { font-size: 0.85rem; font-weight: 600; color: var(--text-main); }
     .profile-info .handle { font-size: 0.78rem; color: var(--text-muted); }
 
-    /* === KONTEN UTAMA KANAN (MULTI-PAGE SYSTEM) === */
+    /* === KONTEN UTAMA KANAN === */
     main {
       margin-left: 260px;
       flex: 1;
@@ -427,12 +425,117 @@
       font-weight: 500;
     }
 
-    /* === WATERMARK OUTLINE "ABILISUN" + EFEK SENTER === */
+    /* === FOOTER: LANGUAGE SWITCHER (BUSINESS.X.COM STYLE) + COPYRIGHT + WATERMARK === */
     .watermark-footer {
-      margin-top: 96px;
+      margin-top: 84px;
       padding-bottom: 64px;
       position: relative;
       user-select: none;
+    }
+
+    .footer-meta-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 44px;
+      padding-top: 28px;
+      border-top: 1px solid #161616;
+    }
+
+    .lang-dropdown {
+      position: relative;
+      display: inline-block;
+    }
+
+    .lang-pill-btn {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid #2F3336;
+      border-radius: 999px;
+      padding: 9px 18px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .lang-pill-btn:hover {
+      background: #121212;
+      border-color: #536471;
+    }
+    .lang-pill-btn svg {
+      width: 14px;
+      height: 14px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      transition: transform 0.2s ease;
+    }
+    .lang-dropdown.open .lang-pill-btn svg {
+      transform: rotate(180deg);
+    }
+
+    .lang-menu {
+      position: absolute;
+      bottom: calc(100% + 8px);
+      left: 0;
+      min-width: 150px;
+      background: #0D0D0D;
+      border: 1px solid #2A2A2A;
+      border-radius: 12px;
+      padding: 6px;
+      display: none;
+      flex-direction: column;
+      gap: 2px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      z-index: 30;
+    }
+    .lang-dropdown.open .lang-menu {
+      display: flex;
+    }
+
+    .lang-option {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: background 0.15s, color 0.15s;
+    }
+    .lang-option:hover {
+      background: #1A1A1A;
+      color: var(--text-main);
+    }
+    .lang-option.active {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+    .lang-option.active::after {
+      content: "•";
+      color: var(--accent-neon);
+      font-size: 1.1rem;
+      line-height: 1;
+    }
+
+    .copyright-text {
+      font-size: 0.8rem;
+      color: #6E767D;
+      letter-spacing: 0.01em;
+    }
+
+    .watermark-svg-wrap {
       overflow: hidden;
     }
     .watermark-svg {
@@ -493,28 +596,28 @@
       <div class="brand-header">
         <span class="brand-logo">abil</span>
         <span class="divider-pipe">|</span>
-        <span>Data Analyst</span>
+        <span data-i18n="brandRole">Data Analyst</span>
       </div>
 
       <nav>
         <ul>
           <!-- Halaman 1: Introduction -->
           <li>
-            <a href="#introduction" class="nav-link active" data-page="page-introduction">Introduction</a>
+            <a href="#introduction" class="nav-link active" data-page="page-introduction" data-i18n="navIntro">Introduction</a>
           </li>
 
           <!-- Halaman 2: Skills & Stack (Accordion) -->
           <li class="nav-item" id="nav-skills">
             <button type="button" class="nav-toggle" aria-expanded="false" data-page="page-skills">
-              <span>Skills & Stack</span>
+              <span data-i18n="navSkills">Skills & Stack</span>
               <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
             <div class="submenu-wrapper">
               <div class="submenu-inner">
                 <ul class="submenu">
-                  <li><a href="#skill-prog" data-page="page-skills" data-target="skill-prog">Programming & Prep</a></li>
-                  <li><a href="#skill-analytics" data-page="page-skills" data-target="skill-analytics">Analytics & Modeling</a></li>
-                  <li><a href="#skill-domain" data-page="page-skills" data-target="skill-domain">Visualization & Ops</a></li>
+                  <li><a href="#skill-prog" data-page="page-skills" data-target="skill-prog" data-i18n="subProg">Programming & Prep</a></li>
+                  <li><a href="#skill-analytics" data-page="page-skills" data-target="skill-analytics" data-i18n="subAnalytics">Analytics & Modeling</a></li>
+                  <li><a href="#skill-domain" data-page="page-skills" data-target="skill-domain" data-i18n="subDomain">Visualization & Ops</a></li>
                 </ul>
               </div>
             </div>
@@ -523,15 +626,15 @@
           <!-- Halaman 3: Projects (Accordion) -->
           <li class="nav-item" id="nav-projects">
             <button type="button" class="nav-toggle" aria-expanded="false" data-page="page-projects">
-              <span>Projects</span>
+              <span data-i18n="navProjects">Projects</span>
               <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
             <div class="submenu-wrapper">
               <div class="submenu-inner">
                 <ul class="submenu">
-                  <li><a href="#proj-01" data-page="page-projects" data-target="proj-01">01. P2P Credit Risk</a></li>
-                  <li><a href="#proj-02" data-page="page-projects" data-target="proj-02">02. HR Attrition Study</a></li>
-                  <li><a href="#proj-03" data-page="page-projects" data-target="proj-03">03. TikTok Affiliate</a></li>
+                  <li><a href="#proj-01" data-page="page-projects" data-target="proj-01" data-i18n="subProj1">01. P2P Credit Risk</a></li>
+                  <li><a href="#proj-02" data-page="page-projects" data-target="proj-02" data-i18n="subProj2">02. HR Attrition Study</a></li>
+                  <li><a href="#proj-03" data-page="page-projects" data-target="proj-03" data-i18n="subProj3">03. TikTok Affiliate</a></li>
                 </ul>
               </div>
             </div>
@@ -539,18 +642,18 @@
 
           <!-- Halaman 4: Experience -->
           <li>
-            <a href="#experience" class="nav-link" data-page="page-experience">Experience</a>
+            <a href="#experience" class="nav-link" data-page="page-experience" data-i18n="navExp">Experience</a>
           </li>
 
           <!-- Halaman 5: Contact -->
           <li>
-            <a href="#contact" class="nav-link" data-page="page-contact">Contact</a>
+            <a href="#contact" class="nav-link" data-page="page-contact" data-i18n="navContact">Contact</a>
           </li>
         </ul>
       </nav>
     </div>
 
-    <!-- Profil Pojok Kiri Bawah (Avatar Hijau Neon #EDFF00) -->
+    <!-- Profil Pojok Kiri Bawah -->
     <div class="profile-box">
       <div class="avatar"></div>
       <div class="profile-info">
@@ -565,72 +668,72 @@
     <div>
       <!-- HALAMAN 1: INTRODUCTION -->
       <section id="page-introduction" class="page-section active-page">
-        <span class="section-kicker">00 — Introduction</span>
-        <h1 class="hero-title">
+        <span class="section-kicker" data-i18n="introKicker">00 — Introduction</span>
+        <h1 class="hero-title" data-i18n="heroTitle">
           Turning messy data into
           <span>decision-ready business solutions.</span>
         </h1>
-        <p class="hero-bio">
-          Data Analyst based in Bandung with a solid foundation in SQL, Python, Tableau, and Excel backed by hands-on execution in end-to-end data pipelines, KPI dashboarding, and applied predictive modeling. Experienced in extracting large datasets, performing exploratory data analysis (EDA), and bridging commercial marketing & live-commerce metrics into actionable growth strategies.
+        <p class="hero-bio" data-i18n="heroBio">
+          Data Analyst based in Bandung leveraging deep expertise in SQL, Python, Tableau, and Microsoft Excel. Proven track record of executing end-to-end data pipelines, developing dynamic KPI dashboards, and deploying applied predictive models. Adept at extracting large scale datasets, conducting rigorous exploratory data analysis, and translating commercial marketing and live commerce metrics into scalable growth strategies.
         </p>
 
         <div class="quick-stats">
           <div class="stat-item">
             <div class="stat-num">Rp99.01B</div>
-            <div class="stat-label">Credit Exposure Analyzed (10K+ Borrowers)</div>
+            <div class="stat-label" data-i18n="stat1Label">Credit Exposure Analyzed (10K+ Borrowers)</div>
           </div>
           <div class="stat-item">
             <div class="stat-num">6,300+</div>
-            <div class="stat-label">E-Commerce Orders Modeled via Star Schema</div>
+            <div class="stat-label" data-i18n="stat2Label">E-Commerce Orders Modeled via Star Schema</div>
           </div>
           <div class="stat-item">
             <div class="stat-num">2,000+</div>
-            <div class="stat-label">Single-Session Checkouts Driven</div>
+            <div class="stat-label" data-i18n="stat3Label">Single-Session Checkouts Driven</div>
           </div>
         </div>
       </section>
 
       <!-- HALAMAN 2: SKILLS & STACK -->
       <section id="page-skills" class="page-section">
-        <span class="section-kicker">01 — Capabilities</span>
-        <h2 class="page-heading">
+        <span class="section-kicker" data-i18n="skillsKicker">01 — Capabilities</span>
+        <h2 class="page-heading" data-i18n="skillsHeading">
           Technical & Analytical Stack
           <span>Tools, modeling frameworks, and operational domain.</span>
         </h2>
 
         <div class="skills-grid">
           <div class="skill-card" id="skill-prog">
-            <h3>Programming & Data Prep</h3>
+            <h3 data-i18n="skillCard1Title">Programming & Data Prep</h3>
             <div class="tag-list">
               <span class="tag">Python (Pandas, NumPy)</span>
               <span class="tag">SQL (CTEs, Window Functions)</span>
               <span class="tag">PostgreSQL</span>
               <span class="tag">Advanced Excel</span>
-              <span class="tag">Data Cleaning & Wrangling</span>
-              <span class="tag">API Retrieval & Web Scraping</span>
+              <span class="tag" data-i18n="tagClean">Data Cleaning & Wrangling</span>
+              <span class="tag" data-i18n="tagApi">API Retrieval & Web Scraping</span>
             </div>
           </div>
 
           <div class="skill-card" id="skill-analytics">
-            <h3>Analytics & Modeling</h3>
+            <h3 data-i18n="skillCard2Title">Analytics & Modeling</h3>
             <div class="tag-list">
-              <span class="tag">Exploratory Data Analysis (EDA)</span>
+              <span class="tag" data-i18n="tagEda">Exploratory Data Analysis (EDA)</span>
               <span class="tag">Feature Engineering</span>
-              <span class="tag">Predictive Forecasting</span>
-              <span class="tag">Customer Segmentation</span>
-              <span class="tag">A/B & Hypothesis Testing</span>
-              <span class="tag">Star Schema Modeling</span>
+              <span class="tag" data-i18n="tagForecast">Predictive Forecasting</span>
+              <span class="tag" data-i18n="tagSegment">Customer Segmentation</span>
+              <span class="tag" data-i18n="tagAb">A/B & Hypothesis Testing</span>
+              <span class="tag" data-i18n="tagStar">Star Schema Modeling</span>
             </div>
           </div>
 
           <div class="skill-card" id="skill-domain">
-            <h3>Visualization & Domain Ops</h3>
+            <h3 data-i18n="skillCard3Title">Visualization & Domain Ops</h3>
             <div class="tag-list">
-              <span class="tag">Tableau Interactive Dashboards</span>
-              <span class="tag">Funnel & Cohort Analysis</span>
-              <span class="tag">E-Commerce & Marketing KPIs</span>
-              <span class="tag">Trust & Safety Compliance</span>
-              <span class="tag">Languages: Bahasa, English, French</span>
+              <span class="tag" data-i18n="tagTableau">Tableau Interactive Dashboards</span>
+              <span class="tag" data-i18n="tagFunnel">Funnel & Cohort Analysis</span>
+              <span class="tag" data-i18n="tagKpi">E-Commerce & Marketing KPIs</span>
+              <span class="tag" data-i18n="tagTrust">Trust & Safety Compliance</span>
+              <span class="tag" data-i18n="tagLang">Languages: Bahasa, English, French</span>
             </div>
           </div>
         </div>
@@ -638,67 +741,67 @@
 
       <!-- HALAMAN 3: PROJECTS -->
       <section id="page-projects" class="page-section">
-        <span class="section-kicker">02 — Selected Case Studies</span>
-        <h2 class="page-heading">
+        <span class="section-kicker" data-i18n="projKicker">02 — Selected Case Studies</span>
+        <h2 class="page-heading" data-i18n="projHeading">
           Data Analytics Projects
           <span>End-to-end pipelines, risk scoring, and executive BI.</span>
         </h2>
 
-        <!-- PROJECT 01: P2P Lending -->
+        <!-- PROJECT 01 -->
         <div class="project-item" id="proj-01">
           <div class="visual-box">
-            <div class="placeholder-art">[ Tableau Dashboard — P2P Risk Analysis ]</div>
+            <div class="placeholder-art" data-i18n="proj1Art">[ Tableau Dashboard — P2P Risk Analysis ]</div>
           </div>
           <div class="project-meta">
-            <div class="project-num">01 / CREDIT RISK & FINTECH</div>
+            <div class="project-num" data-i18n="proj1Num">01 / CREDIT RISK & FINTECH</div>
             <div class="project-desc">
-              <h3>P2P Lending Default & TWP90 Risk Analysis</h3>
-              <div class="metrics-pill">10,000+ Borrowers • Rp99.01B Exposure • Projected 0.06% Default Rate</div>
-              <p>Developed an end-to-end credit risk evaluation pipeline analyzing systemic default drivers and financial vulnerability metrics (DSR & Limit Utilization). Engineered an automated 3-Tier Early Warning System (EWS) framework and SQL segmentation models alongside an interactive Tableau executive dashboard.</p>
+              <h3 data-i18n="proj1Title">P2P Lending Default & TWP90 Risk Analysis</h3>
+              <div class="metrics-pill" data-i18n="proj1Pill">10,000+ Borrowers • Rp99.01B Exposure • Projected 0.60% Default Rate</div>
+              <p data-i18n="proj1Desc">Developed an end-to-end credit risk evaluation pipeline analyzing systemic default drivers and financial vulnerability metrics (DSR & Limit Utilization). Engineered an automated 3-Tier Early Warning System (EWS) framework and SQL segmentation models alongside an interactive Tableau executive dashboard.</p>
               <div class="stack-inline">Python • PostgreSQL • Tableau • EWS Framework</div>
               <div>
-                <a href="https://github.com/abilisun/p2p-lending-credit-risk-analytics" target="_blank" class="project-link">GitHub Repository ↗</a>
-                <a href="https://public.tableau.com:9443/views/P2PLendingPaylaterRiskAnalyticsDashboard/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link">Tableau Dashboard ↗</a>
+                <a href="https://github.com/abilisun/p2p-lending-credit-risk-analytics" target="_blank" class="project-link" data-i18n="linkGithub">GitHub Repository ↗</a>
+                <a href="https://public.tableau.com:9443/views/P2PLendingPaylaterRiskAnalyticsDashboard/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link" data-i18n="linkTableau">Tableau Dashboard ↗</a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- PROJECT 02: HR Attrition -->
+        <!-- PROJECT 02 -->
         <div class="project-item" id="proj-02">
           <div class="visual-box">
-            <div class="placeholder-art">[ Tableau Dashboard — HR Attrition ]</div>
+            <div class="placeholder-art" data-i18n="proj2Art">[ Tableau Dashboard — HR Attrition ]</div>
           </div>
           <div class="project-meta">
-            <div class="project-num">02 / WORKFORCE & HR ANALYTICS</div>
+            <div class="project-num" data-i18n="proj2Num">02 / WORKFORCE & HR ANALYTICS</div>
             <div class="project-desc">
-              <h3>HR Employee Attrition Deep Dive</h3>
-              <div class="metrics-pill">Workforce Efficiency • Retention Drivers • Executive BI</div>
-              <p>Identified key churn drivers across departments, overtime workload, and compensation tiers to formulate data-backed retention initiatives. Delivered an automated relational analytics workflow and dynamic Tableau dashboard tracking workforce efficiency metrics.</p>
+              <h3 data-i18n="proj2Title">HR Employee Attrition Deep Dive</h3>
+              <div class="metrics-pill" data-i18n="proj2Pill">Workforce Efficiency • Retention Drivers • Executive BI</div>
+              <p data-i18n="proj2Desc">Identified key churn drivers across departments, overtime workload, and compensation tiers to formulate data-backed retention initiatives. Delivered an automated relational analytics workflow and dynamic Tableau dashboard tracking workforce efficiency metrics.</p>
               <div class="stack-inline">SQL • Python • Tableau • Workforce Analytics</div>
               <div>
-                <a href="https://github.com/abilisun/hr-analytics-talent-retention" target="_blank" class="project-link">GitHub Repository ↗</a>
-                <a href="https://public.tableau.com:9443/views/HRAnalyticsTalentRetentionWorkforceEfficiency/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link">Tableau Dashboard ↗</a>
+                <a href="https://github.com/abilisun/hr-analytics-talent-retention" target="_blank" class="project-link" data-i18n="linkGithub">GitHub Repository ↗</a>
+                <a href="https://public.tableau.com:9443/views/HRAnalyticsTalentRetentionWorkforceEfficiency/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link" data-i18n="linkTableau">Tableau Dashboard ↗</a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- PROJECT 03: TikTok Affiliate -->
+        <!-- PROJECT 03 -->
         <div class="project-item" id="proj-03">
           <div class="visual-box">
-            <div class="placeholder-art">[ Star Schema & KPI Dashboard — TikTok Affiliate ]</div>
+            <div class="placeholder-art" data-i18n="proj3Art">[ Star Schema & KPI Dashboard — TikTok Affiliate ]</div>
           </div>
           <div class="project-meta">
-            <div class="project-num">03 / E-COMMERCE & GROWTH</div>
+            <div class="project-num" data-i18n="proj3Num">03 / E-COMMERCE & GROWTH</div>
             <div class="project-desc">
-              <h3>TikTok Affiliate Analytics</h3>
-              <div class="metrics-pill">6,300+ E-Commerce Orders • Star Schema • A/B Experimentation</div>
-              <p>Built an end-to-end analytics pipeline evaluating user engagement, forecasting trends, and conversion performance. Processed multi-source logs using Star Schema modeling, feature engineering, and advanced SQL (CTEs & Window Functions) to drive automated KPI dashboards and A/B test validation.</p>
+              <h3 data-i18n="proj3Title">TikTok Affiliate Analytics</h3>
+              <div class="metrics-pill" data-i18n="proj3Pill">6,300+ E-Commerce Orders • Star Schema • A/B Experimentation</div>
+              <p data-i18n="proj3Desc">Built an end-to-end analytics pipeline evaluating user engagement, forecasting trends, and conversion performance. Processed multi-source logs using Star Schema modeling, feature engineering, and advanced SQL (CTEs & Window Functions) to drive automated KPI dashboards and A/B test validation.</p>
               <div class="stack-inline">Python • SQL • Star Schema • Tableau</div>
               <div>
-                <a href="https://github.com/abilisun/tiktok-affiliate-analytics" target="_blank" class="project-link">GitHub Repository ↗</a>
-                <a href="https://public.tableau.com:9443/views/TikTokAffiliateAnalyticsDashboard/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link">Tableau Dashboard ↗</a>
+                <a href="https://github.com/abilisun/tiktok-affiliate-analytics" target="_blank" class="project-link" data-i18n="linkGithub">GitHub Repository ↗</a>
+                <a href="https://public.tableau.com:9443/views/TikTokAffiliateAnalyticsDashboard/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link" data-i18n="linkTableau">Tableau Dashboard ↗</a>
               </div>
             </div>
           </div>
@@ -707,49 +810,49 @@
 
       <!-- HALAMAN 4: EXPERIENCE & EDUCATION -->
       <section id="page-experience" class="page-section">
-        <span class="section-kicker">03 — Track Record</span>
-        <h2 class="page-heading">
+        <span class="section-kicker" data-i18n="expKicker">03 — Track Record</span>
+        <h2 class="page-heading" data-i18n="expHeading">
           Experience & Education
           <span>Commercial execution, trust & safety, and analytics training.</span>
         </h2>
 
         <div class="exp-list">
           <div class="exp-item">
-            <div class="exp-period">Jan 2026 — Present</div>
+            <div class="exp-period" data-i18n="exp1Period">Jan 2026 — Present</div>
             <div class="exp-role">
-              <h3>Host Live & Marketing Staff</h3>
+              <h3 data-i18n="exp1Title">Host Live & Marketing Staff</h3>
               <div class="exp-company">Sepatu Compass — Bandung, Indonesia</div>
-              <p>Hosted live commerce sessions driving high audience engagement and 2,000+ checkouts in a single session. Tracked and analyzed daily sales, traffic, and campaign performance data to evaluate market trends, optimize consumer targeting, and support internal operational strategy.</p>
+              <p data-i18n="exp1Desc">Hosted live commerce sessions driving high audience engagement and 2,000+ checkouts in a single session. Tracked and analyzed daily sales, traffic, and campaign performance data to evaluate market trends, optimize consumer targeting, and support internal operational strategy.</p>
             </div>
           </div>
 
           <div class="exp-item">
-            <div class="exp-period">Mar 2025 — Dec 2025</div>
+            <div class="exp-period" data-i18n="exp2Period">Mar 2025 — Dec 2025</div>
             <div class="exp-role">
-              <h3>Marketing Officer</h3>
+              <h3 data-i18n="exp2Title">Marketing Officer</h3>
               <div class="exp-company">Healthy Care, CV. Equator Aromaterapi — Bogor, Indonesia</div>
-              <p>Planned and managed digital marketing campaigns with continuous performance tracking aligned to organizational growth goals. Monitored operational and marketing datasets, authored periodic performance reports, and streamlined cross-functional workflows.</p>
+              <p data-i18n="exp2Desc">Planned and managed digital marketing campaigns with continuous performance tracking aligned to organizational growth goals. Monitored operational and marketing datasets, authored periodic performance reports, and streamlined cross-functional workflows.</p>
             </div>
           </div>
 
           <div class="exp-item">
-            <div class="exp-period">Oct 2024 — Mar 2025</div>
+            <div class="exp-period" data-i18n="exp3Period">Oct 2024 — Mar 2025</div>
             <div class="exp-role">
-              <h3>Content Moderator</h3>
+              <h3 data-i18n="exp3Title">Content Moderator</h3>
               <div class="exp-company">Gear Inc. (PT. Gearinc Services Indonesia) — Denpasar, Indonesia</div>
-              <p>Executed high-accuracy data classification, pattern recognition, and risk assessment across user-generated content to maintain strict platform policy compliance. Investigated complex operational edge cases to elevate quality standards.</p>
+              <p data-i18n="exp3Desc">Executed high-accuracy data classification, pattern recognition, and risk assessment across user-generated content to maintain strict platform policy compliance. Investigated complex operational edge cases to elevate quality standards.</p>
             </div>
           </div>
 
           <div class="exp-item">
-            <div class="exp-period">Education & Honors</div>
+            <div class="exp-period" data-i18n="eduPeriod">Education & Honors</div>
             <div class="exp-role">
-              <h3>Data Analyst & Business Intelligence Bootcamp</h3>
-              <div class="exp-company">dibimbing.id — Jakarta (Aug 2026 – Dec 2026)</div>
-              <p style="margin-bottom: 16px;">Intensive practical training in SQL, Python, statistical modeling, and end-to-end BI dashboarding.</p>
-              <h3>Bachelor Degree in French Language & Literature</h3>
-              <div class="exp-company">Universitas Brawijaya — Malang (Aug 2019 – Dec 2022)</div>
-              <p>Vice President of Cercle des Étudiants en Français. 1st Place National Announcing Competition E-Radio Unair (2021) & 2nd Place National Podcast Competition KBR.id (2022).</p>
+              <h3 data-i18n="edu1Title">Data Analyst & Business Intelligence Bootcamp</h3>
+              <div class="exp-company" data-i18n="edu1Comp">dibimbing.id — Jakarta (Aug 2026 – Dec 2026)</div>
+              <p style="margin-bottom: 16px;" data-i18n="edu1Desc">Intensive practical training in SQL, Python, statistical modeling, and end-to-end BI dashboarding.</p>
+              <h3 data-i18n="edu2Title">Bachelor Degree in French Language & Literature</h3>
+              <div class="exp-company" data-i18n="edu2Comp">Universitas Brawijaya — Malang (Aug 2019 – Dec 2022)</div>
+              <p data-i18n="edu2Desc">Vice President of Cercle des Étudiants en Français. 1st Place National Announcing Competition E-Radio Unair (2021) & 2nd Place National Podcast Competition KBR.id (2022).</p>
             </div>
           </div>
         </div>
@@ -757,8 +860,8 @@
 
       <!-- HALAMAN 5: CONTACT -->
       <section id="page-contact" class="page-section">
-        <span class="section-kicker">04 — Get In Touch</span>
-        <h2 class="page-heading">
+        <span class="section-kicker" data-i18n="contactKicker">04 — Get In Touch</span>
+        <h2 class="page-heading" data-i18n="contactHeading">
           Let’s collaborate.
           <span>Open for Data Analyst & Business Intelligence roles.</span>
         </h2>
@@ -772,7 +875,7 @@
             <span>↗</span>
           </a>
 
-          <a href="https://www.linkedin.com/in/abilisun/" target="_blank" class="contact-card">
+          <a href="https://www.linkedin.com/in/nabil-ihsan-3914b1248/" target="_blank" class="contact-card">
             <div>
               <div class="contact-label">LinkedIn</div>
               <div class="contact-value">Nabil Ihsan</div>
@@ -788,32 +891,277 @@
             <span>↗</span>
           </a>
 
+          <a href="https://wa.me/6285163634586" target="_blank" class="contact-card">
+            <div>
+              <div class="contact-label" data-i18n="contactPhoneLabel">WhatsApp / Phone</div>
+              <div class="contact-value">+62 8XX-XXXX-XXXX</div>
+            </div>
+            <span>↗</span>
+          </a>
+        </div>
+      </section>
+    </div>
 
-    <!-- FOOTER WATERMARK OUTLINE "ABILISUN" DENGAN EFEK SENTER KURSOR -->
+    <!-- FOOTER: LANGUAGE SELECTOR + COPYRIGHT + WATERMARK OUTLINE -->
     <footer class="watermark-footer" id="watermark-area">
-      <svg class="watermark-svg" viewBox="0 0 920 155" preserveAspectRatio="xMidYMid meet">
-        <defs>
-          <radialGradient id="flashlight-grad" gradientUnits="userSpaceOnUse" cx="-500" cy="-500" r="180">
-            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
-            <stop offset="45%" stop-color="#EDFF00" stop-opacity="0.65" />
-            <stop offset="100%" stop-color="#222222" stop-opacity="0" />
-          </radialGradient>
-        </defs>
+      <!-- Bagian Pill Language Selector & © 2026 by abil -->
+      <div class="footer-meta-bar">
+        <div class="lang-dropdown" id="lang-dropdown">
+          <button type="button" class="lang-pill-btn" id="lang-toggle-btn" aria-haspopup="listbox" aria-expanded="false">
+            <span id="current-lang-label">English</span>
+            <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="lang-menu" role="listbox">
+            <button type="button" class="lang-option active" data-lang="en">English</button>
+            <button type="button" class="lang-option" data-lang="fr">Français</button>
+          </div>
+        </div>
+        <div class="copyright-text">© 2026 by abil</div>
+      </div>
 
-        <text x="0" y="132" class="watermark-text" stroke="#222222">ABILISUN</text>
-        <text x="0" y="132" class="watermark-text" stroke="url(#flashlight-grad)">ABILISUN</text>
-      </svg>
+      <!-- Watermark Outline ABILISUN dengan Efek Senter -->
+      <div class="watermark-svg-wrap">
+        <svg class="watermark-svg" viewBox="0 0 920 155" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <radialGradient id="flashlight-grad" gradientUnits="userSpaceOnUse" cx="-500" cy="-500" r="180">
+              <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+              <stop offset="45%" stop-color="#EDFF00" stop-opacity="0.65" />
+              <stop offset="100%" stop-color="#222222" stop-opacity="0" />
+            </radialGradient>
+          </defs>
+
+          <text x="0" y="132" class="watermark-text" stroke="#222222">ABILISUN</text>
+          <text x="0" y="132" class="watermark-text" stroke="url(#flashlight-grad)">ABILISUN</text>
+        </svg>
+      </div>
     </footer>
   </main>
 
   <!-- FLOATING PILL BAR -->
   <div class="floating-bar">
-    <a href="mailto:abilisun@gmail.com" class="btn-pill btn-white">Get in Touch</a>
+    <a href="mailto:abilisun@gmail.com" class="btn-pill btn-white" data-i18n="ctaTouch">Get in Touch</a>
     <a href="https://www.linkedin.com/in/nabil-ihsan-3914b1248/" target="_blank" class="btn-pill btn-dark">LinkedIn</a>
   </div>
 
-  <!-- SCRIPT MULTI-PAGE NAVIGATION, ACCORDION & FLASHLIGHT -->
+  <!-- SCRIPT MULTI-PAGE, ACCORDION, BILINGUAL (EN/FR) & FLASHLIGHT -->
   <script>
+    const translations = {
+      en: {
+        brandRole: "Data Analyst",
+        navIntro: "Introduction",
+        navSkills: "Skills & Stack",
+        subProg: "Programming & Prep",
+        subAnalytics: "Analytics & Modeling",
+        subDomain: "Visualization & Ops",
+        navProjects: "Projects",
+        subProj1: "01. P2P Credit Risk",
+        subProj2: "02. HR Attrition Study",
+        subProj3: "03. TikTok Affiliate",
+        navExp: "Experience",
+        navContact: "Contact",
+
+        introKicker: "00 — Introduction",
+        heroTitle: "Turning messy data into<span>decision-ready business solutions.</span>",
+        heroBio: "Data Analyst based in Bandung leveraging deep expertise in SQL, Python, Tableau, and Microsoft Excel. Proven track record of executing end-to-end data pipelines, developing dynamic KPI dashboards, and deploying applied predictive models. Adept at extracting large scale datasets, conducting rigorous exploratory data analysis, and translating commercial marketing and live commerce metrics into scalable growth strategies.",
+        stat1Label: "Credit Exposure Analyzed (10K+ Borrowers)",
+        stat2Label: "E-Commerce Orders Modeled via Star Schema",
+        stat3Label: "Single-Session Checkouts Driven",
+
+        skillsKicker: "01 — Capabilities",
+        skillsHeading: "Technical & Analytical Stack<span>Tools, modeling frameworks, and operational domain.</span>",
+        skillCard1Title: "Programming & Data Prep",
+        tagClean: "Data Cleaning & Wrangling",
+        tagApi: "API Retrieval & Web Scraping",
+        skillCard2Title: "Analytics & Modeling",
+        tagEda: "Exploratory Data Analysis (EDA)",
+        tagForecast: "Predictive Forecasting",
+        tagSegment: "Customer Segmentation",
+        tagAb: "A/B & Hypothesis Testing",
+        tagStar: "Star Schema Modeling",
+        skillCard3Title: "Visualization & Domain Ops",
+        tagTableau: "Tableau Interactive Dashboards",
+        tagFunnel: "Funnel & Cohort Analysis",
+        tagKpi: "E-Commerce & Marketing KPIs",
+        tagTrust: "Trust & Safety Compliance",
+        tagLang: "Languages: Bahasa, English, French",
+
+        projKicker: "02 — Selected Case Studies",
+        projHeading: "Data Analytics Projects<span>End-to-end pipelines, risk scoring, and executive BI.</span>",
+        proj1Art: "[ Tableau Dashboard — P2P Risk Analysis ]",
+        proj1Num: "01 / CREDIT RISK & FINTECH",
+        proj1Title: "P2P Lending Default & TWP90 Risk Analysis",
+        proj1Pill: "10,000+ Borrowers • Rp99.01B Exposure • Projected 0.06% Default Rate",
+        proj1Desc: "Developed an end-to-end credit risk evaluation pipeline analyzing systemic default drivers and financial vulnerability metrics (DSR & Limit Utilization). Engineered an automated 3-Tier Early Warning System (EWS) framework and SQL segmentation models alongside an interactive Tableau executive dashboard.",
+        proj2Art: "[ Tableau Dashboard — HR Attrition ]",
+        proj2Num: "02 / WORKFORCE & HR ANALYTICS",
+        proj2Title: "HR Employee Attrition Deep Dive",
+        proj2Pill: "Workforce Efficiency • Retention Drivers • Executive BI",
+        proj2Desc: "Identified key churn drivers across departments, overtime workload, and compensation tiers to formulate data-backed retention initiatives. Delivered an automated relational analytics workflow and dynamic Tableau dashboard tracking workforce efficiency metrics.",
+        proj3Art: "[ Star Schema & KPI Dashboard — TikTok Affiliate ]",
+        proj3Num: "03 / E-COMMERCE & GROWTH",
+        proj3Title: "TikTok Affiliate Analytics",
+        proj3Pill: "6,300+ E-Commerce Orders • Star Schema • A/B Experimentation",
+        proj3Desc: "Built an end-to-end analytics pipeline evaluating user engagement, forecasting trends, and conversion performance. Processed multi-source logs using Star Schema modeling, feature engineering, and advanced SQL (CTEs & Window Functions) to drive automated KPI dashboards and A/B test validation.",
+        linkGithub: "GitHub Repository ↗",
+        linkTableau: "Tableau Dashboard ↗",
+
+        expKicker: "03 — Track Record",
+        expHeading: "Experience & Education<span>Commercial execution, trust & safety, and analytics training.</span>",
+        exp1Period: "Jan 2026 — Present",
+        exp1Title: "Host Live & Marketing Staff",
+        exp1Desc: "Hosted live commerce sessions driving high audience engagement and 2,000+ checkouts in a single session. Tracked and analyzed daily sales, traffic, and campaign performance data to evaluate market trends, optimize consumer targeting, and support internal operational strategy.",
+        exp2Period: "Mar 2025 — Dec 2025",
+        exp2Title: "Marketing Officer",
+        exp2Desc: "Planned and managed digital marketing campaigns with continuous performance tracking aligned to organizational growth goals. Monitored operational and marketing datasets, authored periodic performance reports, and streamlined cross-functional workflows.",
+        exp3Period: "Oct 2024 — Mar 2025",
+        exp3Title: "Content Moderator",
+        exp3Desc: "Executed high-accuracy data classification, pattern recognition, and risk assessment across user-generated content to maintain strict platform policy compliance. Investigated complex operational edge cases to elevate quality standards.",
+        eduPeriod: "Education & Honors",
+        edu1Title: "Data Analyst & Business Intelligence Bootcamp",
+        edu1Comp: "dibimbing.id — Jakarta (Aug 2026 – Dec 2026)",
+        edu1Desc: "Intensive practical training in SQL, Python, statistical modeling, and end-to-end BI dashboarding.",
+        edu2Title: "Bachelor Degree in French Language & Literature",
+        edu2Comp: "Universitas Brawijaya — Malang (Aug 2019 – Dec 2022)",
+        edu2Desc: "Vice President of Cercle des Étudiants en Français. 1st Place National Announcing Competition E-Radio Unair (2021) & 2nd Place National Podcast Competition KBR.id (2022).",
+
+        contactKicker: "04 — Get In Touch",
+        contactHeading: "Let’s collaborate.<span>Open for Data Analyst & Business Intelligence roles.</span>",
+        contactPhoneLabel: "WhatsApp / Phone",
+        ctaTouch: "Get in Touch"
+      },
+      fr: {
+        brandRole: "Analyste de Données",
+        navIntro: "Présentation",
+        navSkills: "Compétences & Stack",
+        subProg: "Programmation & Préparation",
+        subAnalytics: "Analyse & Modélisation",
+        subDomain: "Visualisation & Opérations",
+        navProjects: "Projets",
+        subProj1: "01. Risque de Crédit P2P",
+        subProj2: "02. Étude d'Attrition RH",
+        subProj3: "03. Affiliation TikTok",
+        navExp: "Parcours",
+        navContact: "Contact",
+
+        introKicker: "00 — Présentation",
+        heroTitle: "Transformer des données brutes en<span>solutions décisionnelles stratégiques.</span>",
+        heroBio: "Analyste de données basé à Bandung doté d'une solide expertise en SQL, Python, Tableau et Microsoft Excel. Expérience avérée dans le déploiement de pipelines de données de bout en bout, la conception de tableaux de bord KPI dynamiques et l'implémentation de modèles prédictifs appliqués. Spécialisé dans l'extraction de vastes ensembles de données, l'analyse exploratoire rigoureuse et la conversion des indicateurs marketing et live-commerce en leviers de croissance durable.",
+        stat1Label: "Exposition Crédit Analysée (10 000+ Emprunteurs)",
+        stat2Label: "Commandes E-Commerce Modélisées (Schéma en Étoile)",
+        stat3Label: "Commandes Validées en Une Seule Session Live",
+
+        skillsKicker: "01 — Savoir-Faire",
+        skillsHeading: "Stack Technique & Analytique<span>Outils, architectures de modélisation et expertise métier.</span>",
+        skillCard1Title: "Programmation & Préparation",
+        tagClean: "Nettoyage & Structuration (Wrangling)",
+        tagApi: "Extraction API & Web Scraping",
+        skillCard2Title: "Analyse & Modélisation",
+        tagEda: "Analyse Exploratoire des Données (EDA)",
+        tagForecast: "Prévision Prédictive",
+        tagSegment: "Segmentation Client",
+        tagAb: "Tests A/B & Tests d'Hypothèses",
+        tagStar: "Modélisation en Schéma en Étoile",
+        skillCard3Title: "Visualisation & Opérations Métier",
+        tagTableau: "Tableaux de Bord Interactifs Tableau",
+        tagFunnel: "Analyse d'Entonnoir & Cohortes",
+        tagKpi: "KPI E-Commerce & Marketing",
+        tagTrust: "Conformité Trust & Safety",
+        tagLang: "Langues : Indonésien, Anglais, Français",
+
+        projKicker: "02 — Études de Cas Sélectionnées",
+        projHeading: "Projets d'Analyse de Données<span>Pipelines complets, scoring de risque et BI décisionnelle.</span>",
+        proj1Art: "[ Tableau de Bord — Analyse du Risque P2P ]",
+        proj1Num: "01 / RISQUE DE CRÉDIT & FINTECH",
+        proj1Title: "Analyse du Défaut de Paiement & Risque TWP90 (Prêts P2P)",
+        proj1Pill: "10 000+ Emprunteurs • 99,01 Md IDR d'Exposition • Taux de Défaut Projeté à 0,06 %",
+        proj1Desc: "Développement d'un pipeline complet d'évaluation du risque de crédit analysant les facteurs systémiques de défaut et les indicateurs de vulnérabilité financière (taux d'endettement et utilisation des plafonds). Conception d'un système d'alerte précoce (EWS) automatisé à 3 niveaux, de modèles de segmentation SQL et d'un tableau de bord exécutif interactif sous Tableau.",
+        proj2Art: "[ Tableau de Bord — Attrition RH ]",
+        proj2Num: "02 / ANALYTIQUE RH & CAPITAL HUMAIN",
+        proj2Title: "Analyse Approfondie de l'Attrition des Collaborateurs",
+        proj2Pill: "Efficacité Opérationnelle • Leviers de Rétention • BI Exécutive",
+        proj2Desc: "Identification des principaux facteurs de départ par département, charge d'heures supplémentaires et grille salariale afin de formuler des plans de rétention fondés sur les données. Déploiement d'un flux analytique relationnel automatisé et d'un tableau de bord dynamique Tableau pour le suivi de la performance RH.",
+        proj3Art: "[ Schéma en Étoile & KPI — Affiliation TikTok ]",
+        proj3Num: "03 / E-COMMERCE & CROISSANCE",
+        proj3Title: "Analytique d'Affiliation TikTok",
+        proj3Pill: "6 300+ Commandes E-Commerce • Schéma en Étoile • Expérimentation A/B",
+        proj3Desc: "Conception d'un pipeline analytique de bout en bout évaluant l'engagement utilisateur, les tendances prévisionnelles et les taux de conversion. Traitement de journaux multi-sources via une modélisation en schéma en étoile, l'ingénierie des caractéristiques et du SQL avancé (CTE et fonctions de fenêtrage) pour alimenter les tableaux de bord KPI et valider les tests A/B.",
+        linkGithub: "Dépôt GitHub ↗",
+        linkTableau: "Tableau de Bord ↗",
+
+        expKicker: "03 — Parcours Professionnel",
+        expHeading: "Expérience & Formation<span>Exécution commerciale, conformité et formation en data analytique.</span>",
+        exp1Period: "Janv. 2026 — Présent",
+        exp1Title: "Animateur Live Commerce & Chargé Marketing",
+        exp1Desc: "Animation de sessions de live-commerce générant un fort engagement et plus de 2 000 commandes en une seule session. Suivi et analyse quotidienne des ventes, du trafic et des campagnes afin d'évaluer les tendances du marché, d'optimiser le ciblage client et d'appuyer la stratégie opérationnelle.",
+        exp2Period: "Mars 2025 — Déc. 2025",
+        exp2Title: "Chargé de Marketing Digital",
+        exp2Desc: "Planification et pilotage de campagnes marketing digitales avec un suivi continu des performances aligné sur les objectifs de croissance. Analyse des bases de données opérationnelles et marketing, rédaction de rapports périodiques et optimisation des processus interfonctionnels.",
+        exp3Period: "Oct. 2024 — Mars 2025",
+        exp3Title: "Modérateur de Contenu (Trust & Safety)",
+        exp3Desc: "Classification de données à haute précision, reconnaissance de schémas et évaluation des risques sur les contenus générés par les utilisateurs afin de garantir une conformité stricte aux politiques de la plateforme. Investigation des cas limites complexes pour rehausser les standards de qualité.",
+        eduPeriod: "Formation & Distinctions",
+        edu1Title: "Bootcamp Data Analyst & Business Intelligence",
+        edu1Comp: "dibimbing.id — Jakarta (Août 2026 – Déc. 2026)",
+        edu1Desc: "Formation pratique intensive en SQL, Python, modélisation statistique et conception de tableaux de bord BI de bout en bout.",
+        edu2Title: "Licence en Langue et Littérature Françaises",
+        edu2Comp: "Universitas Brawijaya — Malang (Août 2019 – Déc. 2022)",
+        edu2Desc: "Vice-président du Cercle des Étudiants en Français. 1er Prix du Concours National d'Animation Radio E-Radio Unair (2021) et 2e Prix du Concours National de Podcast KBR.id (2022).",
+
+        contactKicker: "04 — Prendre Contact",
+        contactHeading: "Collaborons ensemble.<span>Disponible pour des opportunités en Data Analysis & Business Intelligence.</span>",
+        contactPhoneLabel: "WhatsApp / Téléphone",
+        ctaTouch: "Me Contacter"
+      }
+    };
+
+    // === LOGIKA BILINGUAL SWITCHER ===
+    const langDropdown = document.getElementById('lang-dropdown');
+    const langToggleBtn = document.getElementById('lang-toggle-btn');
+    const currentLangLabel = document.getElementById('current-lang-label');
+    const langOptions = document.querySelectorAll('.lang-option');
+
+    function setLanguage(lang) {
+      const dict = translations[lang];
+      if (!dict) return;
+
+      document.documentElement.lang = lang;
+      currentLangLabel.textContent = lang === 'fr' ? 'Français' : 'English';
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (dict[key]) {
+          el.innerHTML = dict[key];
+        }
+      });
+
+      langOptions.forEach(opt => {
+        opt.classList.toggle('active', opt.getAttribute('data-lang') === lang);
+      });
+    }
+
+    langToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = langDropdown.classList.toggle('open');
+      langToggleBtn.setAttribute('aria-expanded', isOpen);
+    });
+
+    langOptions.forEach(option => {
+      option.addEventListener('click', () => {
+        const selectedLang = option.getAttribute('data-lang');
+        setLanguage(selectedLang);
+        langDropdown.classList.remove('open');
+        langToggleBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!langDropdown.contains(e.target)) {
+        langDropdown.classList.remove('open');
+        langToggleBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+
+    // === MULTI-PAGE NAVIGATION & ACCORDION ===
     const pages = document.querySelectorAll('.page-section');
     const navLinks = document.querySelectorAll('.nav-link');
     const navItems = document.querySelectorAll('.nav-item');
@@ -873,6 +1221,7 @@
       });
     });
 
+    // === EFEK SENTER WATERMARK ===
     const watermarkArea = document.getElementById('watermark-area');
     const watermarkSvg = watermarkArea.querySelector('.watermark-svg');
     const flashlightGrad = document.getElementById('flashlight-grad');
