@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Abil — Data & Business Intelligence Analyst</title>
+  <title>Nabil Ihsan — Data & Business Intelligence Analyst</title>
+  <!-- Favicon Bulat Warna #EDFF00 -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%23EDFF00'/%3E%3C/svg%3E">
   <style>
     :root {
       --bg: #000000;
@@ -12,7 +14,7 @@
       --border: #222222;
       --text-main: #FFFFFF;
       --text-muted: #888888;
-      --accent-blue: #0022FF;
+      --accent-neon: #EDFF00;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -52,9 +54,11 @@
       margin-bottom: 36px;
     }
     .brand-logo {
-      font-weight: 800;
-      font-size: 1.05rem;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
       letter-spacing: -0.5px;
+      text-transform: lowercase;
     }
     .divider-pipe { color: #444; }
 
@@ -83,6 +87,7 @@
     .nav-link:hover,
     .nav-toggle:hover,
     .nav-link.active,
+    .nav-item.active-parent > .nav-toggle,
     .nav-item.open > .nav-toggle {
       color: var(--text-main);
       font-weight: 600;
@@ -145,21 +150,36 @@
       width: 34px;
       height: 34px;
       border-radius: 50%;
-      background: var(--accent-blue);
+      background: var(--accent-neon);
       flex-shrink: 0;
     }
     .profile-info .name { font-size: 0.85rem; font-weight: 600; color: var(--text-main); }
     .profile-info .handle { font-size: 0.78rem; color: var(--text-muted); }
 
-    /* === KONTEN UTAMA KANAN === */
+    /* === KONTEN UTAMA KANAN (MULTI-PAGE SYSTEM) === */
     main {
       margin-left: 260px;
       flex: 1;
-      padding: 80px 64px 160px 56px;
+      padding: 80px 64px 80px 56px;
       max-width: 1180px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
-    section { margin-bottom: 96px; }
+    .page-section {
+      display: none;
+      animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .page-section.active-page {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     .section-kicker {
       font-size: 0.78rem;
@@ -170,9 +190,21 @@
       display: block;
     }
 
+    .page-heading {
+      font-size: 2.2rem;
+      font-weight: 600;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+      margin-bottom: 32px;
+    }
+    .page-heading span {
+      display: block;
+      color: var(--text-muted);
+    }
+
     /* 1. INTRODUCTION */
     .hero-title {
-      font-size: 2.6rem;
+      font-size: 2.8rem;
       font-weight: 600;
       letter-spacing: -0.03em;
       line-height: 1.15;
@@ -183,18 +215,36 @@
       color: var(--text-muted);
     }
     .hero-bio {
-      max-width: 680px;
+      max-width: 700px;
       color: #B0B0B0;
-      font-size: 1rem;
-      line-height: 1.7;
+      font-size: 1.02rem;
+      line-height: 1.75;
+      margin-bottom: 36px;
+    }
+    .quick-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 720px;
+      border-top: 1px solid var(--border);
+      padding-top: 28px;
+    }
+    .stat-item .stat-num {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 4px;
+    }
+    .stat-item .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
     }
 
-    /* 2. SKILLS (3-Column Tech & Analytical Stack) */
+    /* 2. SKILLS */
     .skills-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
-      margin-top: 24px;
     }
     .skill-card {
       background: var(--surface);
@@ -222,12 +272,19 @@
       border-radius: 3px;
     }
 
-    /* 3. PROJECTS (Numbered 01, 02, 03 ala Referensi) */
-    .project-featured {
+    /* 3. PROJECTS */
+    .project-item {
       display: grid;
-      grid-template-columns: 1.45fr 1fr;
-      gap: 28px;
-      margin-bottom: 44px;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 32px;
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid #161616;
+    }
+    .project-item:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
     }
     .visual-box {
       background: var(--surface);
@@ -264,22 +321,34 @@
       font-size: 0.85rem;
       color: var(--text-muted);
       font-variant-numeric: tabular-nums;
+      margin-bottom: 16px;
     }
     .project-desc h3 {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
+      line-height: 1.35;
     }
     .project-desc p {
       font-size: 0.88rem;
       color: var(--text-muted);
-      line-height: 1.6;
-      margin-bottom: 12px;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .metrics-pill {
+      display: inline-block;
+      font-size: 0.78rem;
+      color: #E0E0E0;
+      background: #141414;
+      border: 1px solid #262626;
+      padding: 4px 10px;
+      border-radius: 3px;
+      margin-bottom: 14px;
     }
     .stack-inline {
       font-size: 0.78rem;
       color: #666;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .project-link {
       display: inline-block;
@@ -288,26 +357,13 @@
       text-decoration: none;
       border-bottom: 1px solid #444;
       padding-bottom: 2px;
-      margin-right: 14px;
+      margin-right: 16px;
     }
     .project-link:hover { border-color: #FFF; }
 
-    .project-grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 32px;
-    }
-    .project-card-small {
-      display: grid;
-      grid-template-columns: 1.25fr 1fr;
-      gap: 20px;
-    }
-    .project-card-small .visual-box { min-height: 210px; }
-
-    /* 4. EXPERIENCE (Clean Ledger Table Style) */
+    /* 4. EXPERIENCE & EDUCATION */
     .exp-list {
       border-top: 1px solid var(--border);
-      margin-top: 20px;
     }
     .exp-item {
       display: grid;
@@ -333,25 +389,67 @@
     .exp-role p {
       font-size: 0.88rem;
       color: var(--text-muted);
-      line-height: 1.6;
+      line-height: 1.65;
     }
 
-    /* 5. CONTACT & FLOATING PILL */
-    .contact-box {
+    /* 5. CONTACT PAGE */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 780px;
+    }
+    .contact-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 4px;
-      padding: 36px;
+      padding: 24px;
+      text-decoration: none;
+      color: var(--text-main);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
+      transition: background 0.2s, border-color 0.2s;
     }
-    .contact-box h2 { font-size: 1.4rem; font-weight: 600; margin-bottom: 6px; }
-    .contact-box p { color: var(--text-muted); font-size: 0.9rem; }
-    .contact-links { display: flex; gap: 12px; }
+    .contact-card:hover {
+      background: var(--surface-hover);
+      border-color: #383838;
+    }
+    .contact-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 4px;
+    }
+    .contact-value {
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
 
+    /* === WATERMARK OUTLINE "ABILISUN" + EFEK SENTER === */
+    .watermark-footer {
+      margin-top: 96px;
+      padding-bottom: 64px;
+      position: relative;
+      user-select: none;
+      overflow: hidden;
+    }
+    .watermark-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .watermark-text {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      font-weight: 700;
+      font-size: 148px;
+      letter-spacing: -3px;
+      fill: transparent;
+      stroke-width: 1.25px;
+    }
+
+    /* FLOATING PILL BAR */
     .floating-bar {
       position: fixed;
       bottom: 28px;
@@ -382,8 +480,8 @@
     @media (max-width: 960px) {
       body { flex-direction: column; }
       aside { position: static; width: 100%; height: auto; border-right: none; border-bottom: 1px solid var(--border); }
-      main { margin-left: 0; padding: 40px 20px 140px; }
-      .skills-grid, .project-featured, .project-grid-2, .project-card-small, .exp-item { grid-template-columns: 1fr; }
+      main { margin-left: 0; padding: 40px 20px 100px; }
+      .skills-grid, .project-item, .exp-item, .contact-grid, .quick-stats { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -393,60 +491,70 @@
   <aside>
     <div>
       <div class="brand-header">
-        <span class="brand-logo">ABIL</span>
+        <span class="brand-logo">abil</span>
         <span class="divider-pipe">|</span>
         <span>Data Analyst</span>
       </div>
 
       <nav>
         <ul>
-          <li><a href="#introduction" class="nav-link active">Introduction</a></li>
+          <!-- Halaman 1: Introduction -->
+          <li>
+            <a href="#introduction" class="nav-link active" data-page="page-introduction">Introduction</a>
+          </li>
 
-          <!-- Menu Accordion 1: Skills -->
-          <li class="nav-item">
-            <button type="button" class="nav-toggle" aria-expanded="false">
+          <!-- Halaman 2: Skills & Stack (Accordion) -->
+          <li class="nav-item" id="nav-skills">
+            <button type="button" class="nav-toggle" aria-expanded="false" data-page="page-skills">
               <span>Skills & Stack</span>
               <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
             <div class="submenu-wrapper">
               <div class="submenu-inner">
                 <ul class="submenu">
-                  <li><a href="#skill-tools">Tools & Querying</a></li>
-                  <li><a href="#skill-core">Analytical Core</a></li>
-                  <li><a href="#skill-domain">Domain & Ops</a></li>
+                  <li><a href="#skill-prog" data-page="page-skills" data-target="skill-prog">Programming & Prep</a></li>
+                  <li><a href="#skill-analytics" data-page="page-skills" data-target="skill-analytics">Analytics & Modeling</a></li>
+                  <li><a href="#skill-domain" data-page="page-skills" data-target="skill-domain">Visualization & Ops</a></li>
                 </ul>
               </div>
             </div>
           </li>
 
-          <!-- Menu Accordion 2: Projects (Default terbuka seperti contoh "Basics") -->
-          <li class="nav-item">
-            <button type="button" class="nav-toggle" aria-expanded="true">
+          <!-- Halaman 3: Projects (Accordion) -->
+          <li class="nav-item" id="nav-projects">
+            <button type="button" class="nav-toggle" aria-expanded="false" data-page="page-projects">
               <span>Projects</span>
               <svg class="chevron" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
             </button>
             <div class="submenu-wrapper">
               <div class="submenu-inner">
                 <ul class="submenu">
-                  <li><a href="#proj-01" class="active">01. P2P Risk & TWP90</a></li>
-                  <li><a href="#proj-02">02. HR Attrition Study</a></li>
-                  <li><a href="#proj-03">03. Affiliate & A/B Test</a></li>
+                  <li><a href="#proj-01" data-page="page-projects" data-target="proj-01">01. P2P Credit Risk</a></li>
+                  <li><a href="#proj-02" data-page="page-projects" data-target="proj-02">02. HR Attrition Study</a></li>
+                  <li><a href="#proj-03" data-page="page-projects" data-target="proj-03">03. TikTok Affiliate</a></li>
                 </ul>
               </div>
             </div>
           </li>
 
-          <li><a href="#experience" class="nav-link">Experience</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <!-- Halaman 4: Experience -->
+          <li>
+            <a href="#experience" class="nav-link" data-page="page-experience">Experience</a>
+          </li>
+
+          <!-- Halaman 5: Contact -->
+          <li>
+            <a href="#contact" class="nav-link" data-page="page-contact">Contact</a>
+          </li>
         </ul>
       </nav>
     </div>
 
-    <!-- Profil Pojok Kiri Bawah -->
+    <!-- Profil Pojok Kiri Bawah (Avatar Hijau Neon #EDFF00) -->
     <div class="profile-box">
       <div class="avatar"></div>
       <div class="profile-info">
-        <div class="name">Abil</div>
+        <div class="name">Nabil Ihsan</div>
         <div class="handle">@abilisun</div>
       </div>
     </div>
@@ -454,186 +562,343 @@
 
   <!-- KONTEN UTAMA -->
   <main>
+    <div>
+      <!-- HALAMAN 1: INTRODUCTION -->
+      <section id="page-introduction" class="page-section active-page">
+        <span class="section-kicker">00 — Introduction</span>
+        <h1 class="hero-title">
+          Turning messy data into
+          <span>decision-ready business solutions.</span>
+        </h1>
+        <p class="hero-bio">
+          Junior Data Analyst based in Bandung with a solid foundation in SQL, Python, Tableau, and Excel—backed by hands-on execution in end-to-end data pipelines, KPI dashboarding, and applied predictive modeling. Experienced in extracting large datasets, performing exploratory data analysis (EDA), and bridging commercial marketing & live-commerce metrics into actionable growth strategies.
+        </p>
 
-    <!-- 1. INTRODUCTION -->
-    <section id="introduction">
-      <span class="section-kicker">00 — Introduction</span>
-      <h1 class="hero-title">
-        Turning messy data into
-        <span>actionable business decisions.</span>
-      </h1>
-      <p class="hero-bio">
-        Data & Business Intelligence Analyst with a strong foundation in end-to-end data pipeline execution, exploratory data analysis (EDA), and executive dashboarding. Bridging the gap between raw datasets and commercial strategy—leveraging prior hands-on experience in growth marketing, campaign performance, and F&B operations to deliver insights that actually move the needle.
-      </p>
-    </section>
-
-    <!-- 2. SKILLS -->
-    <section id="skills">
-      <span class="section-kicker">01 — Capabilities</span>
-      <div class="skills-grid">
-        <div class="skill-card" id="skill-tools">
-          <h3>Tools & Tech Stack</h3>
-          <div class="tag-list">
-            <span class="tag">SQL (PostgreSQL)</span>
-            <span class="tag">Python (Pandas, NumPy)</span>
-            <span class="tag">Tableau</span>
-            <span class="tag">Power BI</span>
-            <span class="tag">Excel / Google Sheets</span>
-            <span class="tag">Google Colab</span>
-            <span class="tag">Git & GitHub</span>
+        <div class="quick-stats">
+          <div class="stat-item">
+            <div class="stat-num">Rp99.01B</div>
+            <div class="stat-label">Credit Exposure Analyzed (10K+ Borrowers)</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">6,300+</div>
+            <div class="stat-label">E-Commerce Orders Modeled via Star Schema</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num">2,000+</div>
+            <div class="stat-label">Single-Session Checkouts Driven</div>
           </div>
         </div>
+      </section>
 
-        <div class="skill-card" id="skill-core">
-          <h3>Analytical Skillset</h3>
-          <div class="tag-list">
-            <span class="tag">Exploratory Data Analysis</span>
-            <span class="tag">Data Cleaning & Wrangling</span>
-            <span class="tag">Star Schema Modeling</span>
-            <span class="tag">A/B Testing & Hypothesis</span>
-            <span class="tag">Cohort & Funnel Analysis</span>
-            <span class="tag">KPI & Risk Monitoring</span>
+      <!-- HALAMAN 2: SKILLS & STACK -->
+      <section id="page-skills" class="page-section">
+        <span class="section-kicker">01 — Capabilities</span>
+        <h2 class="page-heading">
+          Technical & Analytical Stack
+          <span>Tools, modeling frameworks, and operational domain.</span>
+        </h2>
+
+        <div class="skills-grid">
+          <div class="skill-card" id="skill-prog">
+            <h3>Programming & Data Prep</h3>
+            <div class="tag-list">
+              <span class="tag">Python (Pandas, NumPy)</span>
+              <span class="tag">SQL (CTEs, Window Functions)</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">Advanced Excel</span>
+              <span class="tag">Data Cleaning & Wrangling</span>
+              <span class="tag">API Retrieval & Web Scraping</span>
+            </div>
           </div>
-        </div>
 
-        <div class="skill-card" id="skill-domain">
-          <h3>Domain & Cross-Functional</h3>
-          <div class="tag-list">
-            <span class="tag">Data Storytelling</span>
-            <span class="tag">Stakeholder Alignment</span>
-            <span class="tag">Marketing & Affiliate Metrics</span>
-            <span class="tag">F&B Ops & Unit Economics</span>
-            <span class="tag">Campaign Attribution</span>
+          <div class="skill-card" id="skill-analytics">
+            <h3>Analytics & Modeling</h3>
+            <div class="tag-list">
+              <span class="tag">Exploratory Data Analysis (EDA)</span>
+              <span class="tag">Feature Engineering</span>
+              <span class="tag">Predictive Forecasting</span>
+              <span class="tag">Customer Segmentation</span>
+              <span class="tag">A/B & Hypothesis Testing</span>
+              <span class="tag">Star Schema Modeling</span>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- 3. PROJECTS -->
-    <section id="projects">
-      <span class="section-kicker">02 — Selected Case Studies</span>
-
-      <!-- PROJECT 01 (Featured Full Width) -->
-      <div class="project-featured" id="proj-01">
-        <div class="visual-box">
-          <div class="placeholder-art">[ Tableau Dashboard Preview — P2P Risk Analysis ]</div>
-        </div>
-        <div class="project-meta">
-          <div class="project-num">01</div>
-          <div class="project-desc">
-            <h3>P2P Lending Default & TWP90 Risk Analysis</h3>
-            <p>End-to-end credit risk deep dive analyzing borrower default patterns and 90-day delinquency rates (TWP90). Built relational PostgreSQL schemas, executed statistical profiling in Python, and delivered an interactive executive dashboard to flag high-risk loan segments.</p>
-            <div class="stack-inline">PostgreSQL • Python • Tableau</div>
-            <div>
-              <a href="https://github.com/abilisun" target="_blank" class="project-link">GitHub Repo ↗</a>
-              <a href="#" target="_blank" class="project-link">Live Dashboard ↗</a>
+          <div class="skill-card" id="skill-domain">
+            <h3>Visualization & Domain Ops</h3>
+            <div class="tag-list">
+              <span class="tag">Tableau Interactive Dashboards</span>
+              <span class="tag">Funnel & Cohort Analysis</span>
+              <span class="tag">E-Commerce & Marketing KPIs</span>
+              <span class="tag">Trust & Safety Compliance</span>
+              <span class="tag">Languages: Bahasa, English, French</span>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <!-- PROJECT 02 & 03 (2 Columns) -->
-      <div class="project-grid-2">
-        <!-- PROJECT 02 -->
-        <div class="project-card-small" id="proj-02">
+      <!-- HALAMAN 3: PROJECTS -->
+      <section id="page-projects" class="page-section">
+        <span class="section-kicker">02 — Selected Case Studies</span>
+        <h2 class="page-heading">
+          Data Analytics Projects
+          <span>End-to-end pipelines, risk scoring, and executive BI.</span>
+        </h2>
+
+        <!-- PROJECT 01: P2P Lending -->
+        <div class="project-item" id="proj-01">
           <div class="visual-box">
-            <div class="placeholder-art">[ HR Attrition Chart ]</div>
+            <div class="placeholder-art">[ Tableau Dashboard — P2P Risk Analysis ]</div>
           </div>
           <div class="project-meta">
-            <div class="project-num">02</div>
+            <div class="project-num">01 / CREDIT RISK & FINTECH</div>
+            <div class="project-desc">
+              <h3>P2P Lending Default & TWP90 Risk Analysis</h3>
+              <div class="metrics-pill">10,000+ Borrowers • Rp99.01B Exposure • Projected 0.06% Default Rate</div>
+              <p>Developed an end-to-end credit risk evaluation pipeline analyzing systemic default drivers and financial vulnerability metrics (DSR & Limit Utilization). Engineered an automated 3-Tier Early Warning System (EWS) framework and SQL segmentation models alongside an interactive Tableau executive dashboard.</p>
+              <div class="stack-inline">Python • PostgreSQL • Tableau • EWS Framework</div>
+              <div>
+                <a href="https://github.com/abilisun/p2p-lending-credit-risk-analytics" target="_blank" class="project-link">GitHub Repository ↗</a>
+                <a href="https://public.tableau.com:9443/views/P2PLendingPaylaterRiskAnalyticsDashboard/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link">Tableau Dashboard ↗</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- PROJECT 02: HR Attrition -->
+        <div class="project-item" id="proj-02">
+          <div class="visual-box">
+            <div class="placeholder-art">[ Tableau Dashboard — HR Attrition ]</div>
+          </div>
+          <div class="project-meta">
+            <div class="project-num">02 / WORKFORCE & HR ANALYTICS</div>
             <div class="project-desc">
               <h3>HR Employee Attrition Deep Dive</h3>
-              <p>Identified key churn drivers across departments, overtime workload, and compensation tiers to formulate data-backed retention initiatives.</p>
-              <div class="stack-inline">SQL • Python • Tableau</div>
-              <a href="https://github.com/abilisun" target="_blank" class="project-link">Case Study ↗</a>
+              <div class="metrics-pill">Workforce Efficiency • Retention Drivers • Executive BI</div>
+              <p>Identified key churn drivers across departments, overtime workload, and compensation tiers to formulate data-backed retention initiatives. Delivered an automated relational analytics workflow and dynamic Tableau dashboard tracking workforce efficiency metrics.</p>
+              <div class="stack-inline">SQL • Python • Tableau • Workforce Analytics</div>
+              <div>
+                <a href="https://github.com/abilisun/hr-analytics-talent-retention" target="_blank" class="project-link">GitHub Repository ↗</a>
+                <a href="https://public.tableau.com:9443/views/HRAnalyticsTalentRetentionWorkforceEfficiency/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link">Tableau Dashboard ↗</a>
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- PROJECT 03 -->
-        <div class="project-card-small" id="proj-03">
+        <!-- PROJECT 03: TikTok Affiliate -->
+        <div class="project-item" id="proj-03">
           <div class="visual-box">
-            <div class="placeholder-art">[ E-Commerce & A/B Test ]</div>
+            <div class="placeholder-art">[ Star Schema & KPI Dashboard — TikTok Affiliate ]</div>
           </div>
           <div class="project-meta">
-            <div class="project-num">03</div>
+            <div class="project-num">03 / E-COMMERCE & GROWTH</div>
             <div class="project-desc">
-              <h3>TikTok Affiliate & A/B Experimentation</h3>
-              <p>Modeled Star Schema e-commerce logs to track revenue velocity and ran parametric/non-parametric hypothesis testing to validate conversion lift.</p>
-              <div class="stack-inline">SQL • Python (SciPy) • Colab</div>
-              <a href="https://github.com/abilisun" target="_blank" class="project-link">Case Study ↗</a>
+              <h3>TikTok Affiliate Analytics</h3>
+              <div class="metrics-pill">6,300+ E-Commerce Orders • Star Schema • A/B Experimentation</div>
+              <p>Built an end-to-end analytics pipeline evaluating user engagement, forecasting trends, and conversion performance. Processed multi-source logs using Star Schema modeling, feature engineering, and advanced SQL (CTEs & Window Functions) to drive automated KPI dashboards and A/B test validation.</p>
+              <div class="stack-inline">Python • SQL • Star Schema • Tableau</div>
+              <div>
+                <a href="https://github.com/abilisun/tiktok-affiliate-analytics" target="_blank" class="project-link">GitHub Repository ↗</a>
+                <a href="https://public.tableau.com:9443/views/TikTokAffiliateAnalyticsDashboard/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link" target="_blank" class="project-link">Tableau Dashboard ↗</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- 4. EXPERIENCE -->
-    <section id="experience">
-      <span class="section-kicker">03 — Track Record</span>
-      <div class="exp-list">
-        <div class="exp-item">
-          <div class="exp-period">2026 — Present</div>
-          <div class="exp-role">
-            <h3>Creative Marketing & Social Media Coordinator</h3>
-            <div class="exp-company">Blissindo Group — Bandung & Kota Baru Parahyangan</div>
-            <p>Spearheaded multi-venue campaign execution, digital content strategy, and performance tracking across F&B and lifestyle brands. Translated audience engagement metrics into actionable foot-traffic and launch growth initiatives.</p>
+      <!-- HALAMAN 4: EXPERIENCE & EDUCATION -->
+      <section id="page-experience" class="page-section">
+        <span class="section-kicker">03 — Track Record</span>
+        <h2 class="page-heading">
+          Experience & Education
+          <span>Commercial execution, trust & safety, and analytics training.</span>
+        </h2>
+
+        <div class="exp-list">
+          <div class="exp-item">
+            <div class="exp-period">Jan 2026 — Present</div>
+            <div class="exp-role">
+              <h3>Host Live & Marketing Staff</h3>
+              <div class="exp-company">Sepatu Compass — Bandung, Indonesia</div>
+              <p>Hosted live commerce sessions driving high audience engagement and 2,000+ checkouts in a single session. Tracked and analyzed daily sales, traffic, and campaign performance data to evaluate market trends, optimize consumer targeting, and support internal operational strategy.</p>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-period">Mar 2025 — Dec 2025</div>
+            <div class="exp-role">
+              <h3>Marketing Officer</h3>
+              <div class="exp-company">Healthy Care, CV. Equator Aromaterapi — Bogor, Indonesia</div>
+              <p>Planned and managed digital marketing campaigns with continuous performance tracking aligned to organizational growth goals. Monitored operational and marketing datasets, authored periodic performance reports, and streamlined cross-functional workflows.</p>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-period">Oct 2024 — Mar 2025</div>
+            <div class="exp-role">
+              <h3>Content Moderator</h3>
+              <div class="exp-company">Gear Inc. (PT. Gearinc Services Indonesia) — Denpasar, Indonesia</div>
+              <p>Executed high-accuracy data classification, pattern recognition, and risk assessment across user-generated content to maintain strict platform policy compliance. Investigated complex operational edge cases to elevate quality standards.</p>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-period">Education & Honors</div>
+            <div class="exp-role">
+              <h3>Data Analyst & Business Intelligence Bootcamp</h3>
+              <div class="exp-company">dibimbing.id — Jakarta (Aug 2026 – Dec 2026)</div>
+              <p style="margin-bottom: 16px;">Intensive practical training in SQL, Python, statistical modeling, and end-to-end BI dashboarding.</p>
+              <h3>Bachelor Degree in French Language & Literature</h3>
+              <div class="exp-company">Universitas Brawijaya — Malang (Aug 2019 – Dec 2022)</div>
+              <p>Vice President of Cercle des Étudiants en Français. 1st Place National Announcing Competition E-Radio Unair (2021) & 2nd Place National Podcast Competition KBR.id (2022).</p>
+            </div>
           </div>
         </div>
+      </section>
 
-        <div class="exp-item">
-          <div class="exp-period">Previous Roles</div>
-          <div class="exp-role">
-            <h3>Live Commerce Host, Content Moderator & F&B Operations</h3>
-            <div class="exp-company">Gear Inc. & Hospitality Sector</div>
-            <p>Drove real-time GMV conversion in affiliate live commerce, maintained high-accuracy trust & safety SLA compliance, and managed 3+ years of ground-level F&B inventory and daily operational workflows.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+      <!-- HALAMAN 5: CONTACT -->
+      <section id="page-contact" class="page-section">
+        <span class="section-kicker">04 — Get In Touch</span>
+        <h2 class="page-heading">
+          Let’s collaborate.
+          <span>Open for Data Analyst & Business Intelligence roles.</span>
+        </h2>
 
-    <!-- 5. CONTACT -->
-    <section id="contact">
-      <span class="section-kicker">04 — Get In Touch</span>
-      <div class="contact-box">
-        <div>
-          <h2>Open for Data & BI Analyst opportunities.</h2>
-          <p>Let’s discuss how data-driven insights can scale your business operations.</p>
-        </div>
-        <div class="contact-links">
-          <a href="mailto:emailkamu@gmail.com" class="btn-pill btn-white">Email Me</a>
-          <a href="https://linkedin.com/in/usernamekamu" target="_blank" class="btn-pill btn-dark">LinkedIn ↗</a>
-        </div>
-      </div>
-    </section>
+        <div class="contact-grid">
+          <a href="mailto:abilisun@gmail.com" class="contact-card">
+            <div>
+              <div class="contact-label">Email</div>
+              <div class="contact-value">abilisun@gmail.com</div>
+            </div>
+            <span>↗</span>
+          </a>
 
+          <a href="https://www.linkedin.com/in/nabil-ihsan-3914b1248/" target="_blank" class="contact-card">
+            <div>
+              <div class="contact-label">LinkedIn</div>
+              <div class="contact-value">Nabil Ihsan</div>
+            </div>
+            <span>↗</span>
+          </a>
+
+          <a href="https://github.com/abilisun" target="_blank" class="contact-card">
+            <div>
+              <div class="contact-label">GitHub</div>
+              <div class="contact-value">@abilisun</div>
+            </div>
+            <span>↗</span>
+          </a>
+
+          <a href="https://wa.me/6285163634586" target="_blank" class="contact-card">
+            <div>
+              <div class="contact-label">WhatsApp / Phone</div>
+              <div class="contact-value">+62 851-6363-4586</div>
+            </div>
+            <span>↗</span>
+          </a>
+        </div>
+      </section>
+    </div>
+
+    <!-- FOOTER WATERMARK OUTLINE "ABILISUN" DENGAN EFEK SENTER KURSOR -->
+    <footer class="watermark-footer" id="watermark-area">
+      <svg class="watermark-svg" viewBox="0 0 920 155" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <radialGradient id="flashlight-grad" gradientUnits="userSpaceOnUse" cx="-500" cy="-500" r="180">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="1" />
+            <stop offset="45%" stop-color="#EDFF00" stop-opacity="0.65" />
+            <stop offset="100%" stop-color="#222222" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        <text x="0" y="132" class="watermark-text" stroke="#222222">ABILISUN</text>
+        <text x="0" y="132" class="watermark-text" stroke="url(#flashlight-grad)">ABILISUN</text>
+      </svg>
+    </footer>
   </main>
 
   <!-- FLOATING PILL BAR -->
   <div class="floating-bar">
-    <a href="mailto:emailkamu@gmail.com" class="btn-pill btn-white">Get in Touch</a>
-    <a href="https://linkedin.com/in/usernamekamu" target="_blank" class="btn-pill btn-dark">LinkedIn</a>
+    <a href="mailto:abilisun@gmail.com" class="btn-pill btn-white">Get in Touch</a>
+    <a href="https://www.linkedin.com/in/nabil-ihsan-3914b1248/" target="_blank" class="btn-pill btn-dark">LinkedIn</a>
   </div>
 
-  <!-- SCRIPT INTERAKTIF UNTUK ACCORDION MENU -->
+  <!-- SCRIPT MULTI-PAGE NAVIGATION, ACCORDION & FLASHLIGHT -->
   <script>
+    const pages = document.querySelectorAll('.page-section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navItems = document.querySelectorAll('.nav-item');
+    const subLinks = document.querySelectorAll('.submenu a');
+
+    function switchPage(pageId, targetId = null) {
+      pages.forEach(p => p.classList.remove('active-page'));
+      const activePage = document.getElementById(pageId);
+      if (activePage) activePage.classList.add('active-page');
+
+      navLinks.forEach(l => l.classList.remove('active'));
+      navItems.forEach(item => item.classList.remove('active-parent'));
+      subLinks.forEach(s => s.classList.remove('active'));
+
+      const matchingLink = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+      if (matchingLink) matchingLink.classList.add('active');
+
+      const matchingToggle = document.querySelector(`.nav-toggle[data-page="${pageId}"]`);
+      if (matchingToggle) matchingToggle.parentElement.classList.add('active-parent');
+
+      if (targetId) {
+        const subLink = document.querySelector(`.submenu a[data-target="${targetId}"]`);
+        if (subLink) subLink.classList.add('active');
+
+        setTimeout(() => {
+          const targetEl = document.getElementById(targetId);
+          if (targetEl) {
+            targetEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          }
+        }, 60);
+      } else {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        switchPage(link.getAttribute('data-page'));
+      });
+    });
+
     document.querySelectorAll('.nav-toggle').forEach(button => {
       button.addEventListener('click', () => {
         const navItem = button.parentElement;
         const isOpen = navItem.classList.contains('open');
-
-        // Toggle buka/tutup menu yang diklik
         navItem.classList.toggle('open');
         button.setAttribute('aria-expanded', !isOpen);
+        switchPage(button.getAttribute('data-page'));
       });
     });
 
-    // Sorot item sub-menu yang sedang aktif saat diklik
-    document.querySelectorAll('.submenu a, .nav-link').forEach(link => {
-      link.addEventListener('click', () => {
-        document.querySelectorAll('.submenu a, .nav-link').forEach(el => el.classList.remove('active'));
-        link.classList.add('active');
+    subLinks.forEach(sub => {
+      sub.addEventListener('click', (e) => {
+        e.preventDefault();
+        switchPage(sub.getAttribute('data-page'), sub.getAttribute('data-target'));
       });
+    });
+
+    const watermarkArea = document.getElementById('watermark-area');
+    const watermarkSvg = watermarkArea.querySelector('.watermark-svg');
+    const flashlightGrad = document.getElementById('flashlight-grad');
+
+    watermarkArea.addEventListener('mousemove', (e) => {
+      const rect = watermarkSvg.getBoundingClientRect();
+      const svgX = ((e.clientX - rect.left) / rect.width) * 920;
+      const svgY = ((e.clientY - rect.top) / rect.height) * 155;
+
+      flashlightGrad.setAttribute('cx', svgX);
+      flashlightGrad.setAttribute('cy', svgY);
+    });
+
+    watermarkArea.addEventListener('mouseleave', () => {
+      flashlightGrad.setAttribute('cx', -500);
+      flashlightGrad.setAttribute('cy', -500);
     });
   </script>
 
